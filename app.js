@@ -11,6 +11,11 @@ app.use(bodyParser.json());
 
 var db = mongoose.connection;
 
+var server = app.listen(process.env.PORT || 8080, function () {
+    var port = server.address().port;
+    console.log("App now running on port", port);
+});
+
 app.get('/', function(req,res){
     res.send('[Please use /api/vat or /api/]');
 });
@@ -70,6 +75,6 @@ app.delete('/api/vatrates/:_id', function (req, res){
 });
 
 
-app.listen(3000);
+//app.listen(3000);
 console.log('Starting');
 
