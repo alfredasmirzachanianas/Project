@@ -2,10 +2,6 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-const SocketServer = require('ws').Server;
-const path = require('path');
-const PORT = process.env.PORT || 3000;
-const INDEX = path.join(__dirname, 'index.html');
 
 Rates = require('./models/vatrates') 
 
@@ -16,23 +12,10 @@ app.use(bodyParser.json());
 
 var db = mongoose.connection;
 
-
-const server = express()
-  .use((req, res) => res.sendFile(INDEX) )
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
-
-const wss = new SocketServer({ server });
-
-wss.on('connection', (ws) => {
-  console.log('Client connected');
-  ws.on('close', () => console.log('Client disconnected'));
+var server = app.listen(process.env.PORT || 8080, function () {
+    var port = server.address().port;
+    console.log("App now running on port", port);
 });
-
-setInterval(() => {
-  wss.clients.forEach((client) => {
-    client.send(new Date().toTimeString());
-  });
-}, 1000);
 
 app.use(function (req, res, next) {
 
@@ -111,5 +94,6 @@ app.delete('/api/vatrates/:_id', function (req, res){
 });
 
 
+//app.listen(3000);
 console.log('Starting');
 
