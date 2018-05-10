@@ -25,7 +25,6 @@ class App extends Component {
   render() {
     return(
     <body>
-        /*
       <div>
           <h3>VAT rates</h3>
           <table>

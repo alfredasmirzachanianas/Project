@@ -2,7 +2,6 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-const socketIO = require('socket.io');
 
 Rates = require('./models/vatrates') 
 
@@ -18,7 +17,7 @@ var server = app.listen(3001, function () {
     console.log("App now running on port", port);
 });
 
-const io = socketIO(server);
+var io = require('socket.io')(server);
 
 io.on('connection', function(){ /* … */ });
 server.listen(3001);
