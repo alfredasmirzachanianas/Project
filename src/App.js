@@ -10,7 +10,7 @@ class App extends Component {
     };
   }
   componentDidMount() {
-      fetch('http://localhost/api/vatrates/')
+      fetch('http://localhost:3001/api/vatrates/')
         .then(res => res.json())
         .then(res => {
               this.setState({
