@@ -13,11 +13,16 @@ app.use(bodyParser.json());
 
 var db = mongoose.connection;
 
-var socket = io(':3001');
-
 var server = app.listen(3001, function () {
     var port = server.address().port;
     console.log("App now running on port", port);
+});
+
+const io = socketIO(server);
+
+io.on('connection', (socket) => {
+  console.log('Client connected');
+  socket.on('disconnect', () => console.log('Client disconnected'));
 });
 
 app.use(function (req, res, next) {
