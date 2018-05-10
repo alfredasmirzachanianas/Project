@@ -24,15 +24,7 @@ class App extends Component {
 
   render() {
     return(
-        <p id='server-time'></p>
-        <script src="/socket.io/socket.io.js"></script>
-        <script>
-          var socket = io();
-          var el = document.getElementById('server-time');
-          socket.on('time', function(timeString) {
-            el.innerHTML = 'Server time: ' + timeString;
-          });
-        </script>
+    <body>
         /*
       <div>
           <h3>VAT rates</h3>
@@ -112,6 +104,17 @@ class App extends Component {
                </table>
            </div>
         </div>
+        <p id='server-time'></p>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      var el = document.getElementById('server-time');
+      
+      socket.on('time', function(timeString) {
+        el.innerHTML = 'Server time: ' + timeString
+      });
+    </script>
+  </body>
     );
   }
 }
