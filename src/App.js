@@ -24,7 +24,6 @@ class App extends Component {
 
   render() {
     return(
-    <body>
        <div class="container-fluid">
        <h1>VATRates</h1>
 
@@ -61,13 +60,11 @@ class App extends Component {
                               <td>{p.modifyDate}</td>
                           </tr>
                       );
-
                     })}
                   </tbody>
                </table>
            </div>
         </div>
-  </body>
     );
   }
 }

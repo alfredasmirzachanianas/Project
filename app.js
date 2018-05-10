@@ -2,6 +2,10 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+const express = require('express');
+const SocketServer = require('ws').Server;
+const path = require('path');
+
 
 Rates = require('./models/vatrates') 
 
@@ -12,15 +16,29 @@ app.use(bodyParser.json());
 
 var db = mongoose.connection;
 
-var server = app.listen(3001, function () {
-    var port = server.address().port;
-    console.log("App now running on port", port);
+const express = require('express');
+const SocketServer = require('ws').Server;
+const path = require('path');
+
+const PORT = process.env.PORT || 3000;
+const INDEX = path.join(__dirname, 'index.html');
+
+const server = express()
+  .use((req, res) => res.sendFile(INDEX) )
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
+const wss = new SocketServer({ server });
+
+wss.on('connection', (ws) => {
+  console.log('Client connected');
+  ws.on('close', () => console.log('Client disconnected'));
 });
 
-var io = require('socket.io')(server);
-
-io.on('connection', function(){ /* … */ });
-server.listen(3001);
+setInterval(() => {
+  wss.clients.forEach((client) => {
+    client.send(new Date().toTimeString());
+  });
+}, 1000);
 
 app.use(function (req, res, next) {
 
@@ -53,13 +71,6 @@ app.get('/api/vatrates', function(req, res){
         res.json(rates);
     });
 });
-
-var io = require('socket.io')(server);
-io.on('connection', function(client){
-  client.on('event', function(data){});
-  client.on('disconnect', function(){});
-});
-
 
 app.get('/api/vatrates/:_id', function(req, res){
      Rates.getRatesById(req.params._id, function(err, rates){
