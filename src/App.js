@@ -24,6 +24,15 @@ class App extends Component {
 
   render() {
     return(
+        <p id='server-time'></p>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+          var socket = io();
+          var el = document.getElementById('server-time');
+          socket.on('time', function(timeString) {
+            el.innerHTML = 'Server time: ' + timeString;
+          });
+        </script>
         /*
       <div>
           <h3>VAT rates</h3>
