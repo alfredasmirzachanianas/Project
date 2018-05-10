@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "concurrently \"npm run server\"",
-    "server": "PORT=3001 node app",
+    "server": "PORT=3001 node app.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
