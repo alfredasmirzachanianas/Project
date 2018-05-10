@@ -20,10 +20,8 @@ var server = app.listen(3001, function () {
 
 const io = socketIO(server);
 
-io.on('connection', (socket) => {
-  console.log('Client connected');
-  socket.on('disconnect', () => console.log('Client disconnected'));
-});
+io.on('connection', function(){ /* … */ });
+server.listen(3001);
 
 app.use(function (req, res, next) {
 
@@ -56,6 +54,13 @@ app.get('/api/vatrates', function(req, res){
         res.json(rates);
     });
 });
+
+var io = require('socket.io')(server);
+io.on('connection', function(client){
+  client.on('event', function(data){});
+  client.on('disconnect', function(){});
+});
+
 
 app.get('/api/vatrates/:_id', function(req, res){
      Rates.getRatesById(req.params._id, function(err, rates){
@@ -102,6 +107,5 @@ app.delete('/api/vatrates/:_id', function (req, res){
 });
 
 
-//app.listen(3000);
 console.log('Starting');
 
