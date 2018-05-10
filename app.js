@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+const socketIO = require('socket.io');
 
 Rates = require('./models/vatrates') 
 
@@ -11,6 +12,8 @@ app.use(bodyParser.json());
 
 
 var db = mongoose.connection;
+
+var socket = io(':3001');
 
 var server = app.listen(3001, function () {
     var port = server.address().port;
