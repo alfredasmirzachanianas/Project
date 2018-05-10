@@ -9,7 +9,6 @@ mongoose.connect('mongodb+srv://alfre:asasas@cluster0-rkayj.mongodb.net/vatrates
 
 app.use(bodyParser.json());
 
-
 var db = mongoose.connection;
 
 var server = app.listen(process.env.PORT || 8080, function () {
