@@ -25,42 +25,6 @@ class App extends Component {
   render() {
     return(
     <body>
-      <div>
-          <h3>VAT rates</h3>
-          <table>
-              <thead>
-                   <tr>
-                      <th>id</th>
-                      <th>country</th>
-                      <th>standard_rate</th>
-                      <th>reduced_rate</th>
-                      <th>reduced_rate_alt</th>
-                      <th>super_reduced_rate</th>
-                      <th>parking_rate</th>
-                      <th>createDate</th>
-                      <th>modifyDate</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {this.state.vatrates.map(function(p,index){
-                      return (
-                          <tr>
-                              <td>{p._id}</td>
-                              <td>{p.country}</td>
-                              <td>{p.reduced_rate}</td>
-                              <td>{p.reduced_rate_alt}</td>
-                              <td>{p.super_reduced_rate}</td>
-                              <td>{p.parking_rate}</td>
-                              <td>{p.createDate}</td>
-                              <td>{p.modifyDate}</td>
-                          </tr>
-                      );
-
-                    })}
-                  </tbody>
-            </table>
-        </div>
-        */
        <div class="container-fluid">
        <h1>VATRates</h1>
 
