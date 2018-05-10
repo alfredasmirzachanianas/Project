@@ -18,9 +18,8 @@
     "ws": "5.1.1"
   },
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "concurrently \"npm run server\"",
     "client": "react-scripts start",
-    "server": "PORT=3001 node app.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
