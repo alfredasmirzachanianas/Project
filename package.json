@@ -2,9 +2,11 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "main": "app.js",
   "dependencies": {
+    "bootstrap": "^4.1.1",
+    "concurrently": "3.1.0",
     "joi": "^13.3.0",
+    "jquery": "^3.3.1",
     "mongodb": "^3.0.8",
     "mongoose": "^5.0.17",
     "react": "^16.3.2",
@@ -12,7 +14,9 @@
     "react-scripts": "1.1.4"
   },
   "scripts": {
-    "start": "node app",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "client": "react-scripts start",
+    "server": "node app.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
