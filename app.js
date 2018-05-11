@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 var db = mongoose.connection;
 
-var server = app.listen(process.env.PORT | 5000, function () {
+var server = app.listen(process.env.PORT | 80, function () {
     var port = server.address().port;
     console.log("App now running on port", port);
 });
